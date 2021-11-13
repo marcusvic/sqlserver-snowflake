@@ -9,6 +9,7 @@ sqlalchemy = "*"
 psycopg2 = "*"
 pyodbc = "*"
 python-dotenv = "*"
+snowflake-connector-python = "*"
 
 [dev-packages]
 autopep8 = "*"

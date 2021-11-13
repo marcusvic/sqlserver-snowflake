@@ -8,42 +8,55 @@ from os import getenv
 load_dotenv(
     "C:\\Users\\marcus\\OneDrive - Climate-KIC\\IAAC\\Plaza_Mirror_Ingestion\\.env")
 
-user = getenv('user'),
+user = getenv('user')
 password = getenv('pass')
 servername = getenv('servername')
-print(user)
 
 # %%
 engine = create_engine(
     f"mssql+pyodbc://{user}:{password}@{servername}:1433/FONTES_DB?driver=ODBC+Driver+17+for+SQL+Server")
 
+
 # %%
 sql = '''
-SELECT top 10 *
-FROM dbo."tab_fato001" tf 
+select name
+from sys.tables t 
 '''
 
-# %%
-# querying:
-df = pd.read_sql_query(sql, engine)
+result = list(engine.execute(sql))
+names = [r[0] for r in result]
 
 # %%
-df
+for name in names:
+    sql = f'''
+    SELECT *
+    FROM dbo."{name}" tf 
+    '''
+    df = pd.read_sql_query(sql, engine)
+    df.to_csv(f"{name}.csv", sep=";", index=False, header=False)
 
-# %%
-df.to_csv("plaza_mirror.csv", sep=";")
 
 # %%
 # running stuff in the SQL server:
-sql = '''
-CREATE TABLE testing (id int, name varchar(50))
-'''
+# sql = '''
+# INSERT INTO "testing"
+# values
+#     (4, "Mar,cus,"),
+#     (5, "Rabea, a"),
+# '''
+
+# engine.execute(sql)
 
 # %%
-engine.execute(sql)
+# sql = f'''
+#     SELECT *
+#     FROM dbo."testing"
+#     '''
+# df = pd.read_sql_query(sql, engine)
+# df.to_csv(f"testing.csv", sep=";", index=False)
 
 # %%
-engine.close()
+# engine.close()
 
 # %%
-# engine.dispose()
+engine.dispose()
