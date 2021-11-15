@@ -33,7 +33,7 @@ for name in names:
     FROM dbo."{name}" tf 
     '''
     df = pd.read_sql_query(sql, engine)
-    df.to_csv(f"{name}.csv", sep=";", index=False, header=False)
+    df.to_csv(f"{name}.csv", sep=",", index=False, header=True)
 
 
 # %%
