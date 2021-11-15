@@ -1,6 +1,7 @@
 #Personal
 *.csv
 snow_conn*.py
+testing.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,venv,virtualenv,dotenv,python,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,venv,virtualenv,dotenv,python,jupyternotebooks
