@@ -5,12 +5,20 @@ from dotenv import load_dotenv
 from os import getenv
 
 # %%
-load_dotenv(
-    "C:\\Users\\marcus\\OneDrive - Climate-KIC\\IAAC\\Plaza_Mirror_Ingestion\\.env")
 
-user = getenv('user')
-password = getenv('pass')
-servername = getenv('servername')
+
+class SqlConnector():
+    def __init__(self, dotenvpath: str, dbname: str):
+        self.dotenvpath = dotenvpath
+        self.dbname = dbname
+        self.user = getenv('user')
+        self.password = getenv('pass')
+        self.servername = getenv('servername')
+
+    def engine(self):
+        load_dotenv(
+            "C:\\Users\\marcus\\OneDrive - Climate-KIC\\IAAC\\Plaza_Mirror_Ingestion\\.env")
+
 
 # %%
 engine = create_engine(
