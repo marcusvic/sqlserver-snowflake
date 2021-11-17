@@ -8,15 +8,14 @@ from os import getenv
 
 
 class SqlConnector():
-    def __init__(self, dotenvpath: str, dbname: str):
-        load_dotenv(dotenvpath)
+    def __init__(self, dbname: str):
+        load_dotenv(".env")
         self.dbname = dbname
         self.user = getenv('user')
         self.password = getenv('pass')
         self.servername = getenv('servername')
 
-
-# %%
-connector = SqlConnector(".env", "FONTES_DB")
-engine = create_engine(
-    f"mssql+pyodbc://{connector.user}:{connector.password}@{connector.servername}:1433/{connector.dbname}?driver=ODBC+Driver+17+for+SQL+Server")
+    def connector(self):
+        connector = create_engine(
+            f"mssql+pyodbc://{self.user}:{self.password}@{self.servername}:1433/{self.dbname}?driver=ODBC+Driver+17+for+SQL+Server")
+        return connector

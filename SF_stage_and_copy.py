@@ -1,24 +1,9 @@
-# %%
-import snowflake.connector
 import pandas as pd
-from dotenv import load_dotenv
-from os import getenv
-from get_mss_metadata import create_table
+from get_sqlserver_metadata import create_table
+from SF_connector import SFConnector
 
 # %%
-load_dotenv(
-    "C:\\Users\\marcus\\OneDrive - Climate-KIC\\IAAC\\Plaza_Mirror_Ingestion\\.env")
-
-snowflakeuser = getenv('snowflakeuser')
-snowflakepassword = getenv('snowflakepassword')
-snowflakeaccname = getenv('snowflakeaccname')
-
-# %%
-conn = snowflake.connector.connect(
-    user=snowflakeuser,
-    password=snowflakepassword,
-    account=snowflakeaccname
-)
+conn = SFConnector().conn()
 
 # %%
 conn.cursor().execute("USE WAREHOUSE DEMO_WH")

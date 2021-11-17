@@ -1,8 +1,10 @@
 # %%
-from sqlserver_connector import engine
+from sqlserver_connector import SqlConnector
 import pandas as pd
 
 # %%
+engine = SqlConnector("FONTES_DB").connector()
+
 sql = f'''
     select column_name, data_type, character_maximum_length 
     from INFORMATION_SCHEMA.COLUMNS
