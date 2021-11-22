@@ -47,7 +47,7 @@ class CreateTableStatement(SqlConnector):
         where TABLE_NAME='{self.table_name}' and table_schema = '{self.schema}'
         '''
 
-    # creates a Pandas dataframe with SQL Server column name, data_type, length and Snowflake corresponding datatype
+    # creates a Pandas dataframe with SQL Server column name, mssql data type, length and Snowflake corresponding datatype
     def creates_df(self):
         df = pd.read_sql_query(
             self.gets_table_metada(),
@@ -61,12 +61,13 @@ class CreateTableStatement(SqlConnector):
         columns = ''
         for n in range(df.shape[0]):
             columns += df.iloc[n, ][0] + ' ' + df.iloc[n, ][3] + ', '
-            # columns = ' '.join([str(v) for v in list(df.column_name)])
+            # can also be done with: columns = ' '.join([str(v) for v in list(df.column_name)])
         return f"CREATE OR REPLACE TABLE {self.table_name}({columns[:-2]})"
 
 
 # %%
-createtable = CreateTableStatement("DW_SUCOS", "dbo", "Dim_Organizacional")
+createtable = CreateTableStatement(
+    dbname="DW_SUCOS", schema="dbo", table_name="Dim_Organizacional")
 df = createtable.creates_df()
 sql_statement = createtable.writes_create_table_with_columns_and_types(df)
 print(sql_statement)

@@ -1,0 +1,25 @@
+#alt+enter creates
+#alt+d done
+#alt+c cancelled
+
+✔ Connect to sql server @done(21-11-06 17:34)
+✔ Automatically read all tables in a sql server db and store locally as CSV @done(21-11-06 18:15)
+✔ Connect to Snowflake @done(21-11-10 14:20)
+✔ Push CSV files into existing table in Snowflake @done(21-11-10 16:25)
+✔ Automatically create tables in Snowflake matching sql server data types @done(21-11-16 02:26)
+✔ Automatically populate automatically created tables in Snowflake @done(21-11-12 22:57)
+✔ Refactor for scalability @done(21-11-17 02:37)
+☐ Merge to main GIT branch
+☐ Create logs
+☐ Automate execution locally
+--- 1st phase done
+☐ Push csv files to S3 instead of locally (zero transfer cost since our SF instance runs on AWS)
+☐ Automate execution in the cloud (Is this too big to be a Lambda?)
+☐ Create automated tests
+☐ Merge to main GIT branch 
+--- project concluded
+
+1)MSSS Connector
+2)Generate csv files
+3)Get MSSS metadata
+4)Create tables in SF and push data

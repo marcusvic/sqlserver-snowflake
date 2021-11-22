@@ -2,7 +2,6 @@
 *.csv
 snow_conn*.py
 testing.py
-.todo
 archive
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,venv,virtualenv,dotenv,python,jupyternotebooks
